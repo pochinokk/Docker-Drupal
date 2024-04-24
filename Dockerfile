@@ -1,10 +1,6 @@
+
 FROM drupal:latest
 
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    && rm -rf /var/lib/apt/lists/*
+COPY config/ /var/www/html/sites/default/
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-COPY drupal/ /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/sites/default/
